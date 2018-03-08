@@ -40,7 +40,7 @@ http {
         index index.html;
         root /app;
 
-        location ~* \.(jpg|jpeg|png|bmp|svg|css|js|html|txt|json)$ {
+        location ~* \.(jpg|jpeg|png|bmp|svg|css|js|html|txt|json|xml)$ {
 
             # If the request is a filename/extension, which means directly requesting a file
             try_files $uri =404;
