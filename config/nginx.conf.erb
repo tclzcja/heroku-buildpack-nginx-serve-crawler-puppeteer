@@ -42,11 +42,13 @@ http {
 
         location ~* \.(jpg|jpeg|png|bmp|svg|css|js|html|txt|json)$ {
 
+            # If the request is a filename/extension, which means directly requesting a file
             try_files $uri =404;
         }
 
         location / {
 
+            # If the request is a path, which means a web page
             proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
             proxy_set_header Host $http_host;
             proxy_redirect off;
@@ -56,7 +58,7 @@ http {
                 proxy_pass http://for_crawler;
                 break;
             }
-            try_files $uri /i.html;
+            try_files /i.html;
         }
 
         if ($http_x_forwarded_proto != "https") {
